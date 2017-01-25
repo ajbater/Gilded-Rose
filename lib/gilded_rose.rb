@@ -36,8 +36,8 @@ class GildedRose
   end
 
   def update_normal(item)
+    decrease_quality(item) if item.sell_in >= 0
     2.times { decrease_quality(item) } if item.sell_in < 0
-    decrease_quality(item)
     decrease_sell_in_value(item)
   end
 
@@ -47,6 +47,7 @@ class GildedRose
   end
 
   def update_backstage_passes(item)
+    item.quality = 0 if item.sell_in < 0
     if item.sell_in <= 5 && item.quality < MAXIMUM_QUALITY
       3.times { increase_quality(item) }
     elsif item.sell_in <= 10 && item.quality < MAXIMUM_QUALITY

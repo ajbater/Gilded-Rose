@@ -29,9 +29,9 @@ describe GildedRose do
       it "decreases the quality by 2 after the sell_in value has been reached" do
         items = [Item.new("Normal Item", 5, 10)]
         gilded_rose = GildedRose.new(items)
-        5.times { gilded_rose.update_quality() }
+        6.times { gilded_rose.update_quality() }
         gilded_rose.update_quality
-        expect(expect(items[0].quality).to eq 3)
+        expect(expect(items[0].quality).to eq 2)
       end
     end
 
@@ -89,7 +89,7 @@ describe GildedRose do
         expect(items[0].quality).to eq 4
       end
 
-      it "it drops quality to zero when the sell_in value reaches 0" do
+      it "it drops quality to zero when the sell_in value reaches is below 0" do
         items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 0, 5)]
         gilded_rose = GildedRose.new(items)
         gilded_rose.update_quality()
