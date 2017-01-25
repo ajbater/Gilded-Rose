@@ -5,6 +5,7 @@ class GildedRose
   end
 
   MAXIMUM_QUALITY = 50
+  MINIMUM_QUALITY = 0
 
   def normal_item?(item)
     (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") && item.name != "Sulfuras, Hand of Ragnaros"
@@ -25,7 +26,7 @@ class GildedRose
   def update_quality()
     @items.each do |item|
       if normal_item?(item)
-        if item.quality > 0
+        if item.quality > MINIMUM_QUALITY
           if !sulfuras?(item)
             item.quality = item.quality - 1
           end
@@ -53,7 +54,7 @@ class GildedRose
       if item.sell_in < 0
         if !aged_brie?(item)
           if !backstage_passes?(item)
-            if item.quality > 0
+            if item.quality > MINIMUM_QUALITY
               if !sulfuras?(item)
                 item.quality = item.quality - 1
               end
