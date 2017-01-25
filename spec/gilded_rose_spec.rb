@@ -43,9 +43,9 @@ describe GildedRose do
       end
 
       it "it cannot increase the quality of Aged Brie to more than 50" do
-        items = [Item.new("Aged Brie", 5, 49)]
+        items = [Item.new("Aged Brie", 5, 50)]
         gilded_rose = GildedRose.new(items)
-        2. times { gilded_rose.update_quality() }
+        gilded_rose.update_quality()
         expect(items[0].quality).to eq 50
       end
     end
@@ -86,6 +86,13 @@ describe GildedRose do
         gilded_rose = GildedRose.new(items)
         gilded_rose.update_quality()
         expect(items[0].quality).to eq 4
+      end
+
+      it "it cannot increase the quality of Backstage Passes to more than 50" do
+        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 50)]
+        gilded_rose = GildedRose.new(items)
+        gilded_rose.update_quality()
+        expect(items[0].quality).to eq 50
       end
 
       it "it drops quality to zero when the sell_in value is below 0" do
