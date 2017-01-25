@@ -55,13 +55,24 @@ describe GildedRose do
       it "it will not change the quality" do
         items = [Item.new("Sulfuras, Hand of Ragnaros", 5, 80)]
         gilded_rose = GildedRose.new(items)
+        gilded_rose.update_quality()
         expect(items[0].quality).to eq 80
       end
 
       it "it will not change the sell in value" do
         items = [Item.new("Sulfuras, Hand of Ragnaros", 5, 80)]
         gilded_rose = GildedRose.new(items)
+        gilded_rose.update_quality()
         expect(items[0].sell_in).to eq 5
+      end
+    end
+
+    context "for Backstage Passes" do
+      it "it increases the quality as the sell_in value approaches" do
+        items = [Item.new("Backstage passes to a TAFKAL80ETC concert", 15, 1)]
+        gilded_rose = GildedRose.new(items)
+        gilded_rose.update_quality()
+        expect(items[0].quality).to eq 2
       end
     end
   end
