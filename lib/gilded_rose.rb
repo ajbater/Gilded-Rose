@@ -59,6 +59,8 @@ class GildedRose
   def update_quality()
     @items.each do |item|
       update_brie(item) if aged_brie?(item)
+      update_backstage_passes(item) if backstage_passes?(item)
+      update_normal(item) if normal_item?(item)
     end
   end
 
