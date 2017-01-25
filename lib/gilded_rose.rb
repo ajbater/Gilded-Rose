@@ -36,8 +36,8 @@ class GildedRose
   end
 
   def update_normal(item)
-    decrease_quality(item) if item.sell_in >= 0
-    2.times { decrease_quality(item) } if item.sell_in < 0
+    decrease_quality(item) if item.sell_in >= 0 && item.quality > MINIMUM_QUALITY
+    2.times { decrease_quality(item) } if item.sell_in < 0 && item.quality > MINIMUM_QUALITY
     decrease_sell_in_value(item)
   end
 
