@@ -18,6 +18,13 @@ describe GildedRose do
         gilded_rose.update_quality()
         expect(items[0].quality).to eq 4
       end
+
+      it "decreases the sell_in value by 1" do
+        items = [Item.new("normal_item", 5, 5)]
+        gilded_rose = GildedRose.new(items)
+        gilded_rose.update_quality()
+        expect(items[0].sell_in).to eq 4
+      end
     end
   end
 
