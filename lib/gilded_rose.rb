@@ -23,6 +23,10 @@ class GildedRose
     item.name == "Sulfuras, Hand of Ragnaros"
   end
 
+  def decrease_sell_in_value(item)
+    item.sell_in -= 1
+  end
+
   def update_quality()
     @items.each do |item|
       if normal_item?(item)
@@ -49,7 +53,7 @@ class GildedRose
         end
       end
       if !sulfuras?(item)
-        item.sell_in = item.sell_in - 1
+        decrease_sell_in_value(item)
       end
       if item.sell_in < 0
         if !aged_brie?(item)
