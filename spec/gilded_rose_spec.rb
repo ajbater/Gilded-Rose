@@ -36,18 +36,26 @@ describe GildedRose do
     end
 
     context "for Aged Brie" do
-      it "if the item is Aged Brie, the quality will increase as the sell_in date approaches" do
+      it "it will increase the quality as the sell_in date approaches" do
         items = [Item.new("Aged Brie", 5, 10)]
         gilded_rose = GildedRose.new(items)
         gilded_rose.update_quality()
         expect(items[0].quality).to eq 11
       end
 
-      it "cannot increase the quality of Aged Brie to more than 50" do
+      it "it cannot increase the quality of Aged Brie to more than 50" do
         items = [Item.new("Aged Brie", 5, 49)]
         gilded_rose = GildedRose.new(items)
         2. times { gilded_rose.update_quality() }
         expect(items[0].quality).to eq 50
+      end
+    end
+
+    context "for Sulfuras" do
+      it "it will not change the quality" do
+        items = [Item.new("Sulfuras, Hand of Ragnaros", 5, 80)]
+        gilded_rose = GildedRose.new(items)
+        expect(items[0].quality).to eq 80
       end
     end
   end
