@@ -8,7 +8,7 @@ class GildedRose
   MINIMUM_QUALITY = 0
 
   def normal_item?(item)
-    (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") && item.name != "Sulfuras, Hand of Ragnaros"
+    (!aged_brie?(item) && !backstage_passes?(item)) && !sulfuras?(item)
   end
 
   def aged_brie?(item)
@@ -113,18 +113,4 @@ class GildedRose
 #       end
 #     end
 #   end
-end
-
-class Item
-  attr_accessor :name, :sell_in, :quality
-
-  def initialize(name, sell_in, quality)
-    @name = name
-    @sell_in = sell_in
-    @quality = quality
-  end
-
-  def to_s()
-    "#{@name}, #{@sell_in}, #{@quality}"
-  end
 end
