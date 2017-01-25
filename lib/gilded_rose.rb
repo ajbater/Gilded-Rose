@@ -45,7 +45,7 @@ class GildedRose
           end
         end
       end
-      if item.name != "Sulfuras, Hand of Ragnaros"
+      if !sulfuras?(item)
         item.sell_in = item.sell_in - 1
       end
       if item.sell_in < 0
