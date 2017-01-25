@@ -26,6 +26,9 @@ The brief was to choose the legacy code in the language of our choice, and set t
 ## Approach
 
 I chose to do this challenge in Ruby, using Rspec for testing. I chose these tools because I felt that using the language I felt most comfortable writing in would allow me to focus completely on the design problems at hand.
+
 The first thing I did when beginning this challenge was to address the lack of tests. I wrote tests for all of the edge cases to check that the legacy code definitely did everything it was supposed to do. Having this level of coverage also helped me as I started to refactor, to make sure the changes I made didn't cause any unexpected behaviour elsewhere in the program.
+
 With all my tests in place I began to refactor out the large conditional statement in the update_quality method. I replaced magic numbers with constants, cut out repeated strings, and extracted the logic out of the conditionals into many smaller private methods. Once all my tests were passing again it was actually really easy to extend the program to include the new functionality.
+
 I would like to come back to this kata soon and refactor further. I think the next step would be to extract the different types of item into their own classes, as they all behave slightly differently and some already have their own methods that aren't being used elsewhere. Eventually I will end up with lots of smaller classes that have single responsibilty, rather than one very long class as I have here.
