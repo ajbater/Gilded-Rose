@@ -46,12 +46,26 @@ class GildedRose
     decrease_sell_in_value(item)
   end
 
-  def update_backstage_passes(item)
+  def backstage_normal_update(item)
     increase_quality(item) if item.sell_in > 10 && item.quality < MAXIMUM_QUALITY
-    2.times { increase_quality(item) } if item.sell_in.between?(6, 10) && item.quality < MAXIMUM_QUALITY
-    3.times { increase_quality(item) } if item.sell_in <=5 && item.quality < MAXIMUM_QUALITY
-    item.quality = 0 if item.sell_in < 0
     decrease_sell_in_value(item)
+  end
+
+  def backstage_double_update(item)
+    2.times { increase_quality(item) } if item.sell_in.between?(6, 10) && item.quality < MAXIMUM_QUALITY
+    decrease_sell_in_value(item)
+  end
+
+  def backstage_triple_update(item)
+    3.times { increase_quality(item) } if item.sell_in <=5 && item.quality < MAXIMUM_QUALITY
+    decrease_sell_in_value(item)
+  end
+
+  def update_backstage_passes(item)
+    backstage_normal_update(item)
+    backstage_double_update(item)
+    backstage_triple_update(item)
+    item.quality = 0 if item.sell_in < 0
   end
 
   def update_quality()
