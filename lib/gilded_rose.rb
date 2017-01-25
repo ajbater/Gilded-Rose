@@ -4,35 +4,30 @@ class GildedRose
     @items = items
   end
 
-  def normal_item?
-    @items.each do |item|
-      (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") && item.name != "Sulfuras, Hand of Ragnaros"
-    end
+  def normal_item?(item)
+    (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") && item.name != "Sulfuras, Hand of Ragnaros"
   end
 
-  def aged_brie?
-    @items.each do |item|
-      item.name == "Aged Brie"
-    end
+  def aged_brie?(item)
+    item.name == "Aged Brie"
   end
 
-  def backstage_passes?
-    @items.each do |item|
-      item.name == "Backstage passes to a TAFKAL80ETC concert"
-    end
+  def backstage_passes?(item)
+    item.name == "Backstage passes to a TAFKAL80ETC concert"
   end
 
-  def sulfuras?
-    @items.each do |item|
-      item.name == "Sulfuras, Hand of Ragnaros"
-    end
+  def sulfuras?(item)
+    item.name == "Sulfuras, Hand of Ragnaros"
   end
 
   def update_quality()
     @items.each do |item|
-    if normal_item?
-      if item.quality > 0
-        item.quality -= 1
+      if normal_item?(item)
+        if item.quality > 0
+          if item.name != "Sulfuras, Hand of Ragnaros"
+            item.quality = item.quality - 1
+          end
+        end
       else
         if item.quality < 50
           item.quality = item.quality + 1
