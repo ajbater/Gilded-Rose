@@ -4,6 +4,8 @@ class GildedRose
     @items = items
   end
 
+  MAXIMUM_QUALITY = 50
+
   def normal_item?(item)
     (item.name != "Aged Brie" && item.name != "Backstage passes to a TAFKAL80ETC concert") && item.name != "Sulfuras, Hand of Ragnaros"
   end
@@ -29,16 +31,16 @@ class GildedRose
           end
         end
       else
-        if item.quality < 50
+        if item.quality < MAXIMUM_QUALITY
           item.quality = item.quality + 1
           if backstage_passes?(item)
             if item.sell_in < 11
-              if item.quality < 50
+              if item.quality < MAXIMUM_QUALITY
                 item.quality = item.quality + 1
               end
             end
             if item.sell_in < 6
-              if item.quality < 50
+              if item.quality < MAXIMUM_QUALITY
                 item.quality = item.quality + 1
               end
             end
@@ -52,7 +54,7 @@ class GildedRose
         if !aged_brie?(item)
           if !backstage_passes?(item)
             if item.quality > 0
-              if item.name != "Sulfuras, Hand of Ragnaros"
+              if !sulfuras?(item)
                 item.quality = item.quality - 1
               end
             end
@@ -60,7 +62,7 @@ class GildedRose
             item.quality = item.quality - item.quality
           end
         else
-          if item.quality < 50
+          if item.quality < MAXIMUM_QUALITY
             item.quality = item.quality + 1
           end
         end
