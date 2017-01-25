@@ -9,10 +9,10 @@ class GildedRose
 
   def update_quality()
     @items.each do |item|
-      update_brie(item) if aged_brie?(item)
-      update_backstage_passes(item) if backstage_passes?(item)
-      update_conjured(item) if conjured?(item)
-      update_normal_item(item) if normal_item?(item)
+      update_brie(item)
+      update_backstage_passes(item)
+      update_conjured(item)
+      update_normal_item(item)
     end
   end
 
@@ -59,12 +59,14 @@ class GildedRose
   end
 
   def update_normal_item(item)
+    return if !normal_item?(item)
     decrease_quality_normal(item)
     decrease_quality_double(item) if item.sell_in < 0
     decrease_sell_in_value(item)
   end
 
   def update_brie(item)
+    return if !aged_brie?(item)
     increase_quality(item) if item.quality < MAXIMUM_QUALITY
     decrease_sell_in_value(item)
   end
@@ -82,6 +84,7 @@ class GildedRose
   end
 
   def update_backstage_passes(item)
+    return if !backstage_passes?(item)
     backstage_quality_normal_increase(item)
     backstage_quality_double_increase(item)
     backstage_quality_triple_increase(item)
@@ -90,6 +93,7 @@ class GildedRose
   end
 
   def update_conjured(item)
+    return if !conjured?(item)
     decrease_quality_double(item)
     decrease_sell_in_value(item)
   end
