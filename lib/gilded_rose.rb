@@ -4,9 +4,6 @@ class GildedRose
     @items = items
   end
 
-  MAXIMUM_QUALITY = 50
-  MINIMUM_QUALITY = 0
-
   def update_quality()
     @items.each do |item|
       update_brie(item)
@@ -17,6 +14,9 @@ class GildedRose
   end
 
   private
+
+  MAXIMUM_QUALITY = 50
+  MINIMUM_QUALITY = 0
 
   def normal_item?(item)
     (!aged_brie?(item) && !backstage_passes?(item)) && (!sulfuras?(item) && !conjured?(item))
