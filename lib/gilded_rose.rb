@@ -41,7 +41,7 @@ class GildedRose
   end
 
   def update_brie(item)
-    increase_quality(item)
+    increase_quality(item) if item.quality < MAXIMUM_QUALITY
     decrease_sell_in_value(item)
   end
 
@@ -57,7 +57,9 @@ class GildedRose
   end
 
   def update_quality()
-
+    @items.each do |item|
+      update_brie(item) if aged_brie?(item)
+    end
   end
 
 #   def update_quality()
