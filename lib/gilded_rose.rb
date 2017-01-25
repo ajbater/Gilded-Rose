@@ -27,6 +27,26 @@ class GildedRose
     item.sell_in -= 1
   end
 
+  def decrease_quality(item)
+    item.quality -= 1
+  end
+
+  def increase_quality(item)
+    item.quality += 1
+  end
+
+  def update_normal(item)
+    decrease_quality(item)
+    decrease_sell_in_value(item)
+  end
+
+  def update_brie(item)
+    increase_quality(item)
+    decrease_sell_in_value(item)
+  end
+
+  
+
   def update_quality()
     @items.each do |item|
       if normal_item?(item)
