@@ -24,7 +24,7 @@ class GildedRose
     @items.each do |item|
       if normal_item?(item)
         if item.quality > 0
-          if item.name != "Sulfuras, Hand of Ragnaros"
+          if !sulfuras?(item)
             item.quality = item.quality - 1
           end
         end
