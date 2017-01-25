@@ -55,12 +55,12 @@ class GildedRose
   end
 
   def decrease_quality_double(item)
-    2.times { decrease_quality(item) } if item.sell_in < 0 && item.quality > MINIMUM_QUALITY
+    2.times { decrease_quality(item) } if item.quality > MINIMUM_QUALITY
   end
 
   def update_normal_item(item)
     decrease_quality_normal(item)
-    decrease_quality_double(item)
+    decrease_quality_double(item) if item.sell_in < 0
     decrease_sell_in_value(item)
   end
 
